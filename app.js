@@ -30,12 +30,15 @@ app.use(session({
 }));
 
 app.get('/', function(req, res){
- res.render('index');
+ res.render('index', {activeWord, shownWord, guessesLeft});
+ req.session.word = randomWord;
 });
 
 app.post('/', function(req, res){
-
-})
+  let guess = req.body.guess.toLowerCase();
+  
+  res.render('index', {activeWord, shownWord, lettersGuessed, guessesLeft, correctWords});
+});
 
 
 
