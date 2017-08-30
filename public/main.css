@@ -1,0 +1,12 @@
+.word{
+  display: flex;
+  flex-direction: row;
+};
+
+.letters {
+  margin: 20px 0;
+  height: 40px;
+  width: 60px;
+  text-align: center;
+  vertical-align: middle;
+};

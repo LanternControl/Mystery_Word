@@ -22,6 +22,10 @@ let shownWord = hiddenWord.fill('');
 let lettersGuessed = [];
 let correctWords = [];
 let guessesLeft = 8;
+let correctGuess = 0;
+
+
+
 
 app.use(session({
  secret: 'nehhhh spoot',
@@ -35,11 +39,46 @@ app.get('/', function(req, res){
 });
 
 app.post('/', function(req, res){
-  let guess = req.body.guess.toLowerCase();
-  
+  let guess = req.body.guess_box.toLowerCase();
+  checkWord(guess);
   res.render('index', {activeWord, shownWord, lettersGuessed, guessesLeft, correctWords});
+
 });
 
+function gameOver() {
+//working on losing
+  count = "0"
+};
+
+function gameWon() {
+    if (!shownWord.includes('')) {
+  //working on winning
+      count = 8;
+    }
+  };
+
+
+
+function checkWord(guess) {
+  if (activeWord.includes(guess)) {
+      correctGuess++;
+      let match = activeWord.indexOf(guess);
+      //~ (Bitwise NOT)
+      //Bitwise NOTing any number x yields -(x + 1).
+      while (~match) {
+      hiddenWord[match] = guess;
+      match = activeWord.indexOf(guess, match + 1);
+    }
+ } else {
+   lettersGuessed.push(guess);
+   if (guessesLeft > 1) {
+    guessesLeft--;
+   }
+   else {
+    gameOver();
+   }
+ }
+}
 
 
 app.listen(port, function(req, res){

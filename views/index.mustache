@@ -8,14 +8,14 @@
  </head>
  <body>
    <div class="wrapper">
-  <h1>Hangman<h1>
+  <h1>Hangman</h1>
     <div class="word">
         {{#shownWord}}
           <div class="letters"><h2>{{.}}</h2></div>
         {{/shownWord}}
-   </div>
+    </div>
     <h1>You have {{guessesLeft}} guesses left</h1>
-    <h3>Incorrect Letters {{lettersGuessed}}</h3>
+    <h3>Incorrect Letters {{lettersGuessed}} </h3>
    <form class = "guesses" action="/" method="post">
       <input type="text" name="guess_box" maxlength="1" placeholder="Enter a letter" />
       <button type="submit">Make a guess</button>
