@@ -14,6 +14,15 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+let randomWord = data[Math.floor(Math.random() * data.length)];
+//thanks Nancy for ... operator to split string
+let activeWord = [...randomWord];
+let hiddenWord = [...randomWord];
+let shownWord = hiddenWord.fill('');
+let lettersGuessed = [];
+let correctWords = [];
+let guessesLeft = 8;
+
 app.use(session({
  secret: 'nehhhh spoot',
  resave: false,
